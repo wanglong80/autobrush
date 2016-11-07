@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AutoBrush 选项</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/options.css">
+</head>
+
+<body>
+
+	<div class="wapper">
+		<div class="container">
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#roles" data-toggle="tab">规则列表</a></li>
+				<!--<li><a href="#setting" data-toggle="tab">设置</a></li>-->
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content mtb-sm">
+				<div class="tab-pane active" id="roles">
+					<span id="J_role_new" class="btn btn-success">
+					<i class="glyphicon glyphicon-plus"></i> 新增规则
+				</span>
+
+					<div>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>名称</th>
+									<th>URL</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody id="role_list_tbody">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="tab-pane" id="setting"></div>
+			</div>
+		</div>
+
+		<!-- 新增规则框 -->
+		<div id="J_role_modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 id="J_role_modal_title" class="modal-title">添加一条新的填充规则</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-inline mb-lg">
+							<div class="form-group mr-sm">
+								<label>名称</label>
+								<input name="name" type="text" class="form-control input-sm">
+							</div>
+							<div class="form-group mr-sm">
+								<label>URL匹配</label>
+								<input name="url" type="text" class="form-control input-sm" style="width:240px;" placeholder="当前URL匹配">
+							</div>
+							<div class="form-group">
+								<label>Focus匹配</label>
+								<input name="focus" type="text" class="form-control input-sm" style="width:240px;" placeholder="当前光标焦点所在的xPath匹配">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<span id="J_role_item_add" class="btn btn-info btn-xs mb-sm">追加一段规则项</span>
+							<table id="J_role_inner_table" class="table table-condensed table-hover">
+								<thead>
+									<tr>
+										<th>xPath</th>
+										<th width="150px">值</th>
+										<th width="100px">备注</th>
+									</tr>
+								</thead>
+								<tbody>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<span class="btn btn-default" data-dismiss="modal">关闭</span>
+						<span id="J_role_save" class="btn btn-primary">保存</span>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-editablerow.js"></script>
+<script type="text/javascript" src="js/options.js"></script>

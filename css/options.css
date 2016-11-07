@@ -1,0 +1,10 @@
+.mr-sm {margin-right: 10px;}
+.mb-sm {margin-bottom: 10px;}
+.mb-md {margin-bottom: 20px;}
+.mb-lg {margin-bottom: 30px;}
+.mtb-sm{margin-top: 20px; margin-bottom: 20px;}
+label {margin-right: 5px;}
+input,button,select,textarea {outline:0;}
+:focus{outline: 0;}
+
+.container{width: 970px;padding:50px;}

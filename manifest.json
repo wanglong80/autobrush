@@ -1,0 +1,21 @@
+{
+    "manifest_version": 2,
+    "name": "AutoBrush",
+    "version": "1.0.2",
+    "icons": {
+      "96": "icon.png"
+    },
+    "content_scripts": [{ 
+        "js": ["js/jquery.js", "js/jquery.xpath.js", "js/main.js"], 
+        "matches": ["*://*/*"], 
+        "run_at": "document_end" 
+   }],
+   "browser_action": {
+       "default_icon": "icon.png",
+       "default_popup": "popup.html"
+   },
+   "options_page": "options.html",
+   "permissions": [
+      "storage"
+    ]
+}

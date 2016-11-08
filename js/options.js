@@ -12,6 +12,7 @@
     // 增加规则小项 按钮点击事件
     $("#J_role_item_add").click(function(){
         $roleInnerTable.editablerow().addRow();
+        $("#J_role_wapper_table").scrollTop(0);
     });
 
     // 编辑规则小项 按钮点击事件

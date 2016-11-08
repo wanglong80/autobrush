@@ -7,5 +7,8 @@ label {margin-right: 5px;}
 input,button,select,textarea {outline:0;}
 :focus{outline: 0;}
 
-.container{width: 970px;padding:50px;}
+.container{width: 970px;padding:35px;}
+.logo{overflow:hidden;margin-bottom:35px;}
+.logo h1{float:left;margin:0;}
+.logo h2{float:left;margin-left: 30px;}
 #J_role_wapper_table {overflow: auto;height: 300px;padding-right:20px;}

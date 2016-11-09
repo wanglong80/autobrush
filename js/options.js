@@ -60,7 +60,7 @@
     // 增加新的规则 按钮点击事件
     $("#J_role_new").click(function () {
         currentRoleId = "";
-        $roleModalTitle.text("添加一条新的填充规则");
+        $roleModalTitle.text("添加一条新的行为规则");
         $roleModalInputName.val("");
         $roleModalInputUrl.val("");
         $roleModalInputFocus.val("");
@@ -72,7 +72,7 @@
 
     // 打开规则编辑弹窗
     function openRoleModal(id) {
-        $roleModalTitle.text("更新填充规则");
+        $roleModalTitle.text("更新行为规则");
         findRoleById(id, function (role) {
             var content = JSON.stringify(role.content, null, 4);
             $roleModalInputName.val(role.name);

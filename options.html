@@ -18,7 +18,7 @@
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#roles" data-toggle="tab">规则列表</a></li>
-			<!--<li><a href="#setting" data-toggle="tab">设置</a></li>-->
+			<li><a href="#setting" data-toggle="tab">版本清单</a></li>
 		</ul>
 
 		<!-- Tab panes -->
@@ -43,7 +43,35 @@
 					</table>
 				</div>
 			</div>
-			<div class="tab-pane" id="setting"></div>
+			<div class="tab-pane" id="setting">
+				<div class="row">
+					<div class="col-md-6">
+						<h4>当前版本（v1.0.3）</h4>
+						<ul class="list-group">
+							<li class="list-group-item"><span class="label label-success">功能</span> 支持鼠标模拟点击节点</li>
+							<li class="list-group-item"><span class="label label-success">功能</span> 自动填充产生水波特效</li>
+							<li class="list-group-item"><span class="label label-success">功能</span> 内置Angular数据绑定</li>
+							<li class="list-group-item"><span class="label label-success">功能</span> 支持控件延迟填充</li>
+							<li class="list-group-item"><span class="label label-success">功能</span> 增加控件焦点光标匹配</li>
+							<li class="list-group-item"><span class="label label-warning">修复</span> 配置界面规则列表增加滚动条</li>
+
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<h4>下一版本功能预览</h4>
+						<ul class="list-group">
+							<li class="list-group-item"><span class="label label-success">功能</span> 支持自动填充暂停功能</li>
+							<li class="list-group-item"><span class="label label-success">功能</span> 增加账号模块与云同步</li>
+							<li class="list-group-item"><span class="label label-success">功能</span> 快捷键等相关配置后台可配</li>
+							<li class="list-group-item"><span class="label label-success">功能</span> 值标签随机生成数据样例</li>
+							<li class="list-group-item"><span class="label label-success">功能</span> 规则列表实现分页</li>
+							<li class="list-group-item"><span class="label label-success">功能</span> 规则项列表支持自由排序</li>
+							<li class="list-group-item"><span class="label label-warning">修复</span> 解决Select控件Angular绑定失效问题</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
 		</div>
 	</div>
 
@@ -54,7 +82,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 id="J_role_modal_title" class="modal-title">添加一条新的填充规则</h4>
+					<h4 id="J_role_modal_title" class="modal-title">添加一条新的行为规则</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-inline mb-lg">
@@ -98,12 +126,6 @@
 			<!-- /.modal-content -->
 		</div>
 	</div>
-
-	<div class="hi-icon">
-		asdasdasdad
-	</div>
-
-
 </body>
 
 </html>

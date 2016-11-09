@@ -25,7 +25,7 @@ function loadStyle(href) {
 chrome.storage.local.get("roles", function (obj) {
     // 将数据注入到DOM
     var div = document.createElement("div");
-    div.setAttribute("id", "chrome_plugin_autobrush_mid_data");
+    div.setAttribute("id", "chrome_plugin_autobrush_data");
     div.style.display = "none";
     div.innerText = JSON.stringify(obj);
     document.body.appendChild(div);

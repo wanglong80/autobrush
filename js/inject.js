@@ -1,12 +1,11 @@
 jQuery.noConflict();
 ; (function ($) {
     var config = {
+        // 填充间隔速率（毫秒）
+        interval: 10,
         // 是否开启特效
-        hasEffect: true
+        enableEffect: true
     };
-
-    // 填充间隔速率（毫秒）
-    const INTERVAL = 10;
     
     // 当前页面网址
     const URL = window.location.href;
@@ -33,7 +32,7 @@ jQuery.noConflict();
         }
     }
 
-    function effect(dom) {
+    function effect(dom, callback) {
         var top = dom.offset().top;
         var left = dom.offset().left;
         var $div = $("<div class='chrome-plugin-autobrush-effect chrome-plugin-autobrush-effect-boris' style='position:absolute;top:" + top + "px;left:" + left + "px;'></div>").appendTo("body");
@@ -91,6 +90,7 @@ jQuery.noConflict();
                         if (xo) {
                             xo.each(function () {
                                 log("点击元素", this);
+                                config.enableEffect && effect($(this));
                                 this.click();
                             });
                         }
@@ -100,11 +100,8 @@ jQuery.noConflict();
                         if (com && com.length > 0 && com[0] !== false) {
                             log("填充元素", obj);
                             com.val(obj.value);
-
-                            // 开启特效并且间隔时间大于500毫秒时
-                            if (config.hasEffect && INTERVAL > 500) {
-                                effect(com);
-                            }
+                            com.focus();
+                            config.enableEffect && effect(com);
 
                             // 使用Angular的项目尝试进行数据绑定
                             if (angular) {
@@ -123,17 +120,18 @@ jQuery.noConflict();
                     }
 
                     i++;
-                }, INTERVAL);
+                }, config.interval);
             }
         }
     }
 
+    // 快捷键启动
     function keyEvent(e) {
         if (e.shiftKey == true && e.key == "Enter") {
             console.clear();
             log('按下了激活键', e.key);
             log('当前的URL', URL);
-            var data = document.getElementById("chrome_plugin_autobrush_mid_data").innerText;
+            var data = document.getElementById("chrome_plugin_autobrush_data").innerText;
             data = JSON.parse(data);
             execRoles(data.roles);
         }

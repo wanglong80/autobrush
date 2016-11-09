@@ -1,0 +1,40 @@
+.chrome-plugin-autobrush-effect {
+    display: block !important;
+    width: 30px !important;
+    height: 30px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transition: color 0.7s;
+}
+
+.chrome-plugin-autobrush-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -35px 0 0 0px;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Effect Boris */
+.chrome-plugin-autobrush-effect-boris::after {
+    background: rgba(111,148,182,0.1);
+    animation: anim-effect-boris 0.8s forwards;
+}
+
+@keyframes anim-effect-boris {
+    0% {
+        transform: scale3d(0.3, 0.3, 1);
+    }
+    25%, 50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale3d(1.2, 1.2, 1);
+    }
+}

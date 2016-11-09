@@ -1,24 +1,25 @@
 {
     "manifest_version": 2,
     "name": "AutoBrush",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "icons": {
-      "96": "icon.png"
+      "96": "icon96.png"
     },
     "content_scripts": [{ 
-        "js": ["js/jquery.js", "js/jquery.xpath.js", "js/main.js"], 
+        "js": ["js/main.js"], 
         "matches": ["<all_urls>"], 
         "run_at": "document_end",
         "all_frames": true
    }],
    "browser_action": {
-       "default_icon": "icon.png",
+       "default_icon": "icon96.png",
        "default_popup": "popup.html"
    },
    "web_accessible_resources": [
        "js/jquery.js",
        "js/jquery.xpath.js",
-       "js/inject.js"
+       "js/inject.js",
+       "css/inject.css"
    ],
    "options_page": "options.html",
    "permissions": [

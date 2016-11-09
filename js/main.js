@@ -30,8 +30,8 @@ chrome.storage.local.get("roles", function (obj) {
     div.innerText = JSON.stringify(obj);
     document.body.appendChild(div);
 
-    var jquery = chrome.runtime.getURL("js/jquery.js");
-    var jqueryXPath = chrome.runtime.getURL("js/jquery.xpath.js");
+    var jquery = chrome.runtime.getURL("js/jquery.min.js");
+    var jqueryXPath = chrome.runtime.getURL("js/jquery-xpath.min.js");
     var injectJs = chrome.runtime.getURL("js/inject.js");
     var injectCss = chrome.runtime.getURL("css/inject.css");
 

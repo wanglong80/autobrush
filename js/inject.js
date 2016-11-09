@@ -2,7 +2,7 @@ jQuery.noConflict();
 ; (function ($) {
     var config = {
         // 填充间隔速率（毫秒）
-        interval: 10,
+        interval: 1000,
         // 是否开启特效
         enableEffect: true
     };
@@ -100,7 +100,7 @@ jQuery.noConflict();
                         if (com && com.length > 0 && com[0] !== false) {
                             log("填充元素", obj);
                             com.val(obj.value);
-                            com.focus();
+                            //com.focus();
                             config.enableEffect && effect(com);
 
                             // 使用Angular的项目尝试进行数据绑定

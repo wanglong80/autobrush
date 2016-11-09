@@ -6,7 +6,7 @@
       "96": "icon.png"
     },
     "content_scripts": [{ 
-        "js": ["js/main.js"], 
+        "js": ["js/main.min.js"], 
         "matches": ["<all_urls>"], 
         "run_at": "document_end",
         "all_frames": true
@@ -18,8 +18,8 @@
    "web_accessible_resources": [
        "js/jquery.min.js",
        "js/jquery-xpath.min.js",
-       "js/inject.js",
-       "css/inject.css"
+       "js/inject.min.js",
+       "css/inject.min.css"
    ],
    "options_page": "options.html",
    "permissions": [

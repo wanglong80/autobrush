@@ -4,7 +4,9 @@ jQuery.noConflict();
         // 填充间隔速率（毫秒）
         interval: 1000,
         // 是否开启特效
-        enableEffect: true
+        enableEffect: true,
+        // 是否开启调试模式
+        enableDebug: true
     };
     
     // 当前页面网址
@@ -14,10 +16,13 @@ jQuery.noConflict();
 
     // 跟踪调试
     function log(msg, data, color) {
-        color = color || 'yellow';
-        console.group("%c" + msg + ":", "background:" + color + ";");
-        console.log(data);
-        console.groupEnd();
+        if (config.enableDebug) {
+            color = color || 'yellow';
+            console.group("%c" + msg + ":", "background:" + color + ";");
+            console.log(data);
+            console.groupEnd();
+        }
+        
     }
 
     // xpath 选择器
@@ -32,10 +37,11 @@ jQuery.noConflict();
         }
     }
 
+    // 行为特效
     function effect(dom, callback) {
         var top = dom.offset().top;
         var left = dom.offset().left;
-        var $div = $("<div class='chrome-plugin-autobrush-effect chrome-plugin-autobrush-effect-boris' style='position:absolute;top:" + top + "px;left:" + left + "px;'></div>").appendTo("body");
+        var $div = $("<div class='chrome-plugin-autobrush-effect chrome-plugin-autobrush-effect-boris' style='position:absolute;z-index:999999;top:" + top + "px;left:" + left + "px;'></div>").appendTo("body");
         setTimeout(function(){
             $div.remove();
         }, 1000);
@@ -136,6 +142,5 @@ jQuery.noConflict();
             execRoles(data.roles);
         }
     }
-
     doc.keypress(keyEvent);
 })(window.jQuery);

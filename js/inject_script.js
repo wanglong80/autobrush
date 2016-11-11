@@ -8,11 +8,19 @@ jQuery.noConflict();
         // 是否开启调试模式
         enableDebug: true
     };
-    
+
     // 当前页面网址
     const URL = window.location.href;
 
     var doc = $(document);
+
+    // 监听来自扩展程序的消息
+    chrome.runtime.onMessage.addListener(function(message, sender){
+        if (message.execAction === true) {
+            log('点击执行', '');
+            execRoles(getRoles());
+        }
+    });
 
     // 跟踪调试
     function log(msg, data, color) {
@@ -22,7 +30,6 @@ jQuery.noConflict();
             console.log(data);
             console.groupEnd();
         }
-        
     }
 
     // xpath 选择器
@@ -42,9 +49,15 @@ jQuery.noConflict();
         var top = dom.offset().top;
         var left = dom.offset().left;
         var $div = $("<div class='chrome-plugin-autobrush-effect chrome-plugin-autobrush-effect-boris' style='position:absolute;z-index:999999;top:" + top + "px;left:" + left + "px;'></div>").appendTo("body");
-        setTimeout(function(){
+        setTimeout(function () {
             $div.remove();
         }, 1000);
+    }
+
+    // 取得规则数据
+    function getRoles() {
+        var obj = chrome.storage.local.get("roles");
+        return obj.roles;
     }
 
     // 绑定angular数据
@@ -59,6 +72,7 @@ jQuery.noConflict();
     // 执行规则
     function execRoles(roles) {
         var $activeElement = $(document.activeElement);
+        log('当前的URL', URL);
         log("当前焦点元素", $activeElement.eq(0) || null);
         log("获取规则数据", roles);
 
@@ -136,10 +150,7 @@ jQuery.noConflict();
         if (e.shiftKey == true && e.key == "Enter") {
             console.clear();
             log('按下了激活键', e.key);
-            log('当前的URL', URL);
-            var data = document.getElementById("chrome_plugin_autobrush_data").innerText;
-            data = JSON.parse(data);
-            execRoles(data.roles);
+            execRoles(getRoles());
         }
     }
     doc.keypress(keyEvent);

@@ -1,16 +1,16 @@
 // 规则模块
 (function () {
     var currentRoleId = "",
-    defaultContent = [],
-    $roleInnerTable = $('#J_role_inner_table'),
-    $roleModal = $('#J_role_modal'),
-    $roleModalTitle = $("#J_role_modal_title"),
-    $roleModalInputName = $("#J_role_modal input[name=name]"),
-    $roleModalInputUrl = $("#J_role_modal input[name=url]"),
-    $roleModalInputFocus = $("#J_role_modal input[name=focus]");
+        defaultContent = [],
+        $roleInnerTable = $('#J_role_inner_table'),
+        $roleModal = $('#J_role_modal'),
+        $roleModalTitle = $("#J_role_modal_title"),
+        $roleModalInputName = $("#J_role_modal input[name=name]"),
+        $roleModalInputUrl = $("#J_role_modal input[name=url]"),
+        $roleModalInputFocus = $("#J_role_modal input[name=focus]");
 
     // 增加规则小项 按钮点击事件
-    $("#J_role_item_add").click(function(){
+    $("#J_role_item_add").click(function () {
         $roleInnerTable.editablerow().addRow();
         $("#J_role_wapper_table").scrollTop(0);
     });
@@ -67,7 +67,7 @@
         $("#J_role_inner_table tbody").html("");
         buildEditableRow();
         $roleInnerTable.editablerow().render();
-        $roleModal.modal({backdrop: false, show: true});
+        $roleModal.modal({ backdrop: false, show: true });
     });
 
     // 打开规则编辑弹窗
@@ -81,7 +81,7 @@
             $("#J_role_inner_table tbody").html(createItemsTr(role.content));
             buildEditableRow();
             $roleInnerTable.editablerow().render();
-            $roleModal.modal({backdrop: false, show: true});
+            $roleModal.modal({ backdrop: false, show: true });
         });
     }
 
@@ -107,7 +107,7 @@
                 before: function (data) {
                     return confirm('确定要删除吗？');
                 },
-                callback: function(json) {
+                callback: function (json) {
                     console.log(json)
                 }
             }

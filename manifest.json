@@ -6,7 +6,7 @@
       "96": "icon.png"
     },
     "content_scripts": [{
-        "js": ["js/pure-inject.js", "js/main.js"], 
+        "js": ["js/pure-inject.js", "js/content-script.js"], 
         "matches": ["<all_urls>"], 
         "run_at": "document_end",
         "all_frames": true
@@ -18,9 +18,9 @@
    "web_accessible_resources": [
        "js/jquery.min.js",
        "js/jquery-xpath.min.js",
-       "js/inject_script.js",
        "js/pure-inject-client.js",
-       "css/inject.css"
+       "js/inject-script.js",
+       "css/inject-script.css"
    ],
    "options_page": "options.html",
    "permissions": [

@@ -4,9 +4,9 @@ var manifest = {
             "js/pure-inject-client.js",
             "js/jquery.min.js",
             "js/jquery-xpath.min.js",
-            "js/inject_script.js"
+            "js/inject-script.js"
         ],
-        "css": ["css/inject.css"]
+        "css": ["css/inject-script.css"]
     }],
     "permissions": [
         "storage"

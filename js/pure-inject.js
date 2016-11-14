@@ -59,11 +59,11 @@
 
     window.PureInject = function (manifest) {
 
-        createDiv("chrome_extension_pure_inject_message", {});
+        createDiv('chrome_extension_pure_inject_message', {});
 
         // chrome.runtime.onMessage
         chrome.runtime.onMessage.addListener(function (message, sender) {
-            var div = document.getElementById("chrome_extension_pure_inject_message");
+            var div = document.getElementById('chrome_extension_pure_inject_message');
             div.innerText = JSON.stringify({ message: message, sender: sender });
             div.click();
         });
@@ -71,7 +71,7 @@
         // chrome.storage
         if (contains(manifest.permissions, 'storage')) {
             chrome.storage.local.get(manifest.storage.items, function (obj) {
-                createDiv("chrome_extension_pure_inject_storage", obj);
+                createDiv('chrome_extension_pure_inject_storage', obj);
             });
         }
 

@@ -7,7 +7,7 @@
     window.chrome.storage.local = window.chrome.storage.local || {};
 
     var messageStack = [];
-    document.getElementById("chrome_extension_pure_inject_message").addEventListener("click", function (e) {
+    document.getElementById('chrome_extension_pure_inject_message').addEventListener('click', function (e) {
         if (messageStack.length > 0) {
             var text = e.target.innerText;
             var obj = JSON.parse(e.target.innerText);
@@ -23,7 +23,7 @@
     }
 
     window.chrome.storage.local.get = function (key) {
-        var str = document.getElementById("chrome_extension_pure_inject_storage").innerText;
+        var str = document.getElementById('chrome_extension_pure_inject_storage').innerText;
         var obj = JSON.parse(str);
         return obj[key] ? obj : {};
     }

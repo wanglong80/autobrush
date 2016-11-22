@@ -32,6 +32,11 @@ jQuery.noConflict();
         }
     }
 
+    function sleep(n) {
+        var start = new Date().getTime();
+        while (true) if (new Date().getTime() - start > n) break;
+    }
+
     // xpath 选择器
     function xpath(path) {
         try {
@@ -48,7 +53,12 @@ jQuery.noConflict();
     function effect(dom, callback) {
         var top = dom.offset().top;
         var left = dom.offset().left;
-        var $div = $("<div class='chrome-plugin-autobrush-effect chrome-plugin-autobrush-effect-boris' style='position:absolute;z-index:999999;top:" + top + "px;left:" + left + "px;'></div>").appendTo("body");
+        var width = dom.outerWidth();
+        var height = dom.outerHeight();
+        var marginTop = - ((40 - height) / 2);
+        var marginLeft = - ((40 - width) / 2);
+
+        var $div = $("<div class='chrome-plugin-autobrush-effect' style='position:absolute;z-index:999999;top:" + top + "px;left:" + left + "px;'><div class='chrome-plugin-autobrush-effect--after' style='margin-top:" + marginTop + "px;margin-left:" + marginLeft + "px;'></div></div>").appendTo("body");
         setTimeout(function () {
             $div.remove();
             callback && callback();
@@ -111,6 +121,7 @@ jQuery.noConflict();
 
         var timer = null;
         var timerStatus = 1; // 执行状态: 0停止 1执行 2暂停
+        var startTime = new Date().getTime();
         var i = 0;
         var ii = 0;
 
@@ -127,6 +138,11 @@ jQuery.noConflict();
         }
 
         var action = function () {
+            // 时间间隔计算器
+            if (new Date().getTime() - startTime < config.interval) {
+                return false;
+            }
+
             if (timerStatus === 0) {
                 i = 0; ii = 0;
                 clearInterval(timer);
@@ -150,8 +166,8 @@ jQuery.noConflict();
                 if (xo) {
                     for (var j = ii; j < xo.length; j++) {
                         log('点击元素', xo[j]);
-                        xo[j].click();
                         config.enableEffect && effect($(xo[j]));
+                        xo[j].click();
                         ii = j;
                     }
 
@@ -182,10 +198,11 @@ jQuery.noConflict();
                 }
             }
 
+            startTime = new Date().getTime();
             i++;
         }
 
-        timer = setInterval(action, config.interval);
+        timer = setInterval(action, 100);
     }
 
     // 快捷键启动

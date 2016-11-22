@@ -1,26 +1,24 @@
 .chrome-plugin-autobrush-effect {
     display: block !important;
-    width: 30px !important;
-    height: 30px !important;
+    width: 1px !important;
+    height: 1px !important;
     margin: 0 !important;
     padding: 0 !important;
 }
 
-.chrome-plugin-autobrush-effect::after {
+.chrome-plugin-autobrush-effect--after {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -20px 0 0 0px;
+    margin: 0px;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     opacity: 0;
     pointer-events: none;
-}
 
-/* Effect Boris */
-.chrome-plugin-autobrush-effect-boris::after {
+    /* Effect Boris */
     background: rgba(53,153,240,0.3);
     animation: anim-effect-boris 0.6s forwards;
 }

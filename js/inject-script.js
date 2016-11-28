@@ -65,6 +65,7 @@ jQuery.noConflict();
     }
 
     function msgpopShow() {
+        $("#chrome-plugin-autobrush-msgpop-bar").width("0%");
         $("#chrome-plugin-autobrush-msgpop").slideDown(200);
     }
 

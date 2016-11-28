@@ -32,11 +32,6 @@ jQuery.noConflict();
         }
     }
 
-    function sleep(n) {
-        var start = new Date().getTime();
-        while (true) if (new Date().getTime() - start > n) break;
-    }
-
     // xpath 选择器
     function xpath(path) {
         try {
@@ -49,6 +44,37 @@ jQuery.noConflict();
         }
     }
 
+    function msgpop() {
+        var html = "<div id='chrome-plugin-autobrush-msgpop'>\
+        <p>Autobrush Running <span id='chrome-plugin-autobrush-msgpop-ddd'>. . .</span></p> \
+        <div id='chrome-plugin-autobrush-msgpop-bar'></div>\
+        </div>";
+        var $div = $(html).hide().appendTo("body");
+
+        var i = 0;
+        setInterval(function(){
+            var dot = '...'.substr(0, i);
+            $("#chrome-plugin-autobrush-msgpop-ddd").text(dot);
+            i = i == 3 ? 0 : ++i;
+        }, 300);  
+    }
+
+    function msgpopBar(total, i) {
+        var w = i / total * 100;
+        $("#chrome-plugin-autobrush-msgpop-bar").width(w + "%");
+    }
+
+    function msgpopShow() {
+        $("#chrome-plugin-autobrush-msgpop").slideDown(200);
+    }
+
+    function msgpopClose() {
+        $("#chrome-plugin-autobrush-msgpop").slideUp(200);
+    }
+
+    msgpop();
+    //msgpopShow();
+
     // 行为特效
     function effect(dom, callback) {
         var top = dom.offset().top;
@@ -58,7 +84,7 @@ jQuery.noConflict();
         var marginTop = - ((40 - height) / 2);
         var marginLeft = - ((40 - width) / 2);
 
-        var $div = $("<div class='chrome-plugin-autobrush-effect' style='position:absolute;z-index:999999;top:" + top + "px;left:" + left + "px;'><div class='chrome-plugin-autobrush-effect--after' style='margin-top:" + marginTop + "px;margin-left:" + marginLeft + "px;'></div></div>").appendTo("body");
+        var $div = $("<div class='chrome-plugin-autobrush-effect' style='top:" + top + "px;left:" + left + "px;'><div class='chrome-plugin-autobrush-effect--after' style='margin-top:" + marginTop + "px;margin-left:" + marginLeft + "px;'></div></div>").appendTo("body");
         setTimeout(function () {
             $div.remove();
             callback && callback();
@@ -87,7 +113,13 @@ jQuery.noConflict();
 
         for (var key in roles) {
             var role = roles[key];
+
+            if (role.url == undefined) {
+                continue;
+            }
+
             var rurl = role.url;
+
             rurl = rurl.replace(/\./g, '\\.');
             rurl = rurl.replace(/\*/g, '[a-zA-Z_-]*');
             rurl = '^' + rurl;
@@ -101,6 +133,8 @@ jQuery.noConflict();
                     log('Focus匹配失败', role.focus);
                     continue;
                 }
+
+                config.interval = role.delay;
 
                 // 规则数据
                 var arr = role.content;
@@ -121,7 +155,8 @@ jQuery.noConflict();
 
         var timer = null;
         var timerStatus = 1; // 执行状态: 0停止 1执行 2暂停
-        var startTime = new Date().getTime();
+        var oldTime = new Date().getTime();
+        var delayTime = 0;
         var i = 0;
         var ii = 0;
 
@@ -137,9 +172,21 @@ jQuery.noConflict();
             timerStatus = 2;
         }
 
+        // 延迟
+        function delay(millisecond, callback) {
+            delayTime = millisecond;
+            setTimeout(function(){
+                oldTime = new Date().getTime();
+                delayTime = 0;
+                callback && callback();
+            }, millisecond);
+        }
+
         var action = function () {
+            var currentTime = new Date().getTime();
+
             // 时间间隔计算器
-            if (new Date().getTime() - startTime < config.interval) {
+            if (currentTime - oldTime - delayTime < config.interval) {
                 return false;
             }
 
@@ -153,30 +200,26 @@ jQuery.noConflict();
                 return false;
             }
 
+            // 结束
             if (i >= arr.length) {
                 i = 0; ii = 0;
                 clearInterval(timer);
+                msgpopClose();
                 return false;
             }
 
             var obj = arr[i];
+            var com = xpath(obj.selector);
 
-            if (obj.value == '{click}') {
-                var xo = xpath(obj.selector);
-                if (xo) {
-                    for (var j = ii; j < xo.length; j++) {
-                        log('点击元素', xo[j]);
-                        config.enableEffect && effect($(xo[j]));
-                        xo[j].click();
-                        ii = j;
-                    }
-
-                    j = 0;
+            if (com && com.length > 0 && com[0] !== false) {
+                if (obj.value == '{click}') {
+                    log('点击元素', com);
+                    config.enableEffect && effect($(com));
+                    delay(300, function(){
+                        com[0].click();
+                    });
                 }
-            }
-            else {
-                var com = xpath(obj.selector);
-                if (com && com.length > 0 && com[0] !== false) {
+                else {
                     log('填充元素', obj);
                     com.val(obj.value);
                     //com.focus();
@@ -193,23 +236,24 @@ jQuery.noConflict();
                         }
                     }
                 }
-                else {
-                    log('没有找到填充元素', obj, 'red');
-                }
             }
-
-            startTime = new Date().getTime();
+            else {
+                log('没有找到填充元素', obj, 'red');
+            } 
+            msgpopBar(arr.length, i);
+            oldTime = new Date().getTime();
             i++;
         }
 
-        timer = setInterval(action, 100);
+        timer = setInterval(action, 10);
     }
 
     // 快捷键启动
     function keyEvent(e) {
-        if (e.shiftKey == true && e.key == "A") {
+        if (e.shiftKey == true && e.key == "?") {
             console.clear();
             log('按下了激活键', e.key);
+            msgpopShow();
             execRoles(getRoles());
         }
     }

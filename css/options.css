@@ -3,10 +3,10 @@
 .mb-md {margin-bottom: 20px;}
 .mb-lg {margin-bottom: 30px;}
 .mtb-sm{margin-top: 20px; margin-bottom: 20px;}
-label {margin-right: 5px;}
 input,button,select,textarea {outline:0;}
 :focus{outline: 0;}
 
+.form-group {margin-top:10px;}
 .container{width: 970px;padding:35px;}
 .logo{overflow:hidden;margin-bottom:35px;}
 .logo h1{float:left;margin:0;}

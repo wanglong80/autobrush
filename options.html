@@ -88,15 +88,22 @@
 					<div class="form-inline mb-lg">
 						<div class="form-group mr-sm">
 							<label>名称</label>
-							<input name="name" type="text" class="form-control input-sm">
+							<input data-component="RoleBody" name="name" type="text" class="form-control input-sm">
 						</div>
 						<div class="form-group mr-sm">
-							<label>URL匹配</label>
-							<input name="url" type="text" class="form-control input-sm" style="width:240px;" placeholder="当前URL匹配">
+							<label>URL</label>
+							<input data-component="RoleBody" name="url" type="text" class="form-control input-sm" style="width:240px;" placeholder="当前URL匹配">
 						</div>
 						<div class="form-group">
 							<label>Focus匹配</label>
-							<input name="focus" type="text" class="form-control input-sm" style="width:240px;" placeholder="当前光标焦点所在的xPath匹配">
+							<input data-component="RoleBody" name="focus" type="text" class="form-control input-sm" style="width:240px;" placeholder="当前光标焦点所在的xPath匹配">
+						</div>
+						<div class="form-group">
+							<label>延迟</label>
+							<div class="input-group">
+								<input data-component="RoleBody" name="delay" value="100" type="text" class="form-control input-sm" style="width:50px;" placeholder="50">
+								<div class="input-group-addon">毫秒</div>
+							</div>
 						</div>
 					</div>
 

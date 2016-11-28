@@ -49,6 +49,7 @@
 				}
 				
 				var THIS = this,
+	
 					$this = $( THIS ),
 					offset = $this.offset(),
 					disX = e.pageX - offset.left,
